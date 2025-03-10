@@ -1,15 +1,15 @@
 package com.leverx.training.RatingSystem.db.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.time.Instant;
 
 @Data
+@RequiredArgsConstructor
 @Entity
 @Table(name = "game_object")
 public class GameObject {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -31,9 +31,9 @@ public class GameObject {
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
-    private User userId;
+    private User user;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "game_id", nullable = false)
-    private Game gameId;
+    private Game game;
 }

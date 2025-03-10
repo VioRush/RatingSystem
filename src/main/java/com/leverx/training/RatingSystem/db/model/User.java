@@ -7,11 +7,8 @@ import lombok.*;
 import java.time.Instant;
 import java.util.List;
 
-@Getter
-@Setter
-@ToString
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
+@RequiredArgsConstructor
 @Entity
 @Table(name="user")
 public class User {
@@ -47,12 +44,24 @@ public class User {
     @Column(name = "approved")
     private boolean approved;
 
-    @OneToMany(mappedBy = "userId")
+    @OneToMany(mappedBy = "user")
     private List<GameObject> gameObjects;
 
-    @OneToMany(mappedBy = "authorId")
+    @OneToMany(mappedBy = "author")
     private List<Comment> usersComments;
 
-    @OneToMany(mappedBy = "sellerId")
+    @OneToMany(mappedBy = "seller")
     private List<Comment> comments;
+
+    public User(String firstName, String lastName, String password, String email, boolean emailConfirmed, Instant createdAt, Role role, double avgRating, boolean approved) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.email = email;
+        this.emailConfirmed = emailConfirmed;
+        this.createdAt = createdAt;
+        this.role = role;
+        this.avgRating = avgRating;
+        this.approved = approved;
+    }
 }

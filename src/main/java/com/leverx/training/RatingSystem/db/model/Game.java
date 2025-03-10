@@ -2,15 +2,15 @@ package com.leverx.training.RatingSystem.db.model;
 
 import com.leverx.training.RatingSystem.enums.Category;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
 
 @Data
+@RequiredArgsConstructor
 @Entity
 @Table(name = "game")
 public class Game {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -21,6 +21,6 @@ public class Game {
     @Column(name = "category", nullable = false)
     private Category category;
 
-    @OneToMany(mappedBy = "gameId")
+    @OneToMany(mappedBy = "game")
     private List<GameObject> gameObjects;
 }
