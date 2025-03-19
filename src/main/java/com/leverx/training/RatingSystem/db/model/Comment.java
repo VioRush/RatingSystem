@@ -22,16 +22,29 @@ public class Comment {
     private Instant createdAt;
 
     @Column(name = "approved", nullable = false)
-    private boolean approved;
+    private Boolean approved;
 
     @Column(name = "rating", nullable = false)
-    private double rating;
+    private Double rating;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "author_id", nullable = false)
     private User author;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "seller_id", nullable = false)
     private User seller;
+
+    public Comment(String message, Double rating) {
+        this.message = message;
+        this.rating = rating;
+        this.setApproved(false);
+        this.setCreatedAt(Instant.now());
+    }
+
+    public Comment(String message, Instant createdAt, Double rating) {
+        this.createdAt = createdAt;
+        this.message = message;
+        this.rating = rating;
+    }
 }

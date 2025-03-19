@@ -1,6 +1,14 @@
 package com.leverx.training.RatingSystem.enums;
 
-public enum Role {
+import org.springframework.security.core.GrantedAuthority;
+
+public enum Role implements GrantedAuthority {
     ADMINISTRATOR,
-    SELLER
+    SELLER,
+    USER;
+
+    @Override
+    public String getAuthority() {
+        return this.name();
+    }
 }

@@ -18,9 +18,15 @@ public class Game {
     @Column(name = "title", nullable = false)
     private String title;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "category", nullable = false)
     private Category category;
 
     @OneToMany(mappedBy = "game")
     private List<GameObject> gameObjects;
+
+    public Game(String title, Category category) {
+        this.title = title;
+        this.category = category;
+    }
 }

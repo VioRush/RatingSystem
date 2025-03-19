@@ -18,6 +18,16 @@ public class CommentService {
         return commentRepository.findAll();
     }
 
+    public List<Comment> findBySeller(int sellerId){
+        return commentRepository.findBySeller(sellerId);
+    }
+
+    public List<Comment> findByAuthor(int id){
+        return commentRepository.findByAuthor(id);
+    }
+
+    public List<Comment> findNotApproved() { return commentRepository.findNotApproved(); }
+
     public Optional<Comment> getById(int id){
         return commentRepository.findById(id);
     }
@@ -41,5 +51,9 @@ public class CommentService {
 
     public void delete(int id){
         if(getById(id).isPresent()) this.commentRepository.delete((Comment)getById(id).get());
+    }
+
+    public List<Comment> findBySellerApproved(int id) {
+        return commentRepository.findBySellerApproved(id);
     }
 }
